@@ -20,10 +20,12 @@ RSpec.describe Sequence do
 
   describe 'Object Methods' do
 
-    xit '#generate' do
+    it '#generate' do
       sequence = Sequence.new
-      expect(sequence.generate).to be_a(Array)
-      expect(sequence.generate.length).to eq(4)
+
+      sequence.generate
+      expect(sequence.secret_code).to be_a(Array)
+      expect(sequence.secret_code.length).to eq(4)
       # expect(sequence.generate).to include('r', 'g', 'b', 'y')
     end
 
