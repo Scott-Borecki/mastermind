@@ -1,6 +1,6 @@
 require 'rspec'
 require 'pry'
-require '../lib/sequence.rb'
+require './lib/sequence'
 
 RSpec.describe Sequence do
 
