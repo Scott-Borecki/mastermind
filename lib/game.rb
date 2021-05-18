@@ -1,17 +1,11 @@
 class Game
   attr_reader :message, :guess
+
   def initialize
     @guess_count = 0
     @message = Message.new
     @guess = guess
   end
-  #
-  # def start_message
-  #
-  #   # puts "Welcome to MASTERMIND"
-  #   # puts " ~-~ " * 4
-  #   # puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-  # end
 
   def start_input
     @input = gets.chomp.downcase
@@ -20,9 +14,7 @@ class Game
       @time1 = Time.now
       game_flow
     elsif @input == 'i' || @input == 'instructions'
-      puts "Instructions will go here, now that you've got it:"
-      puts ""
-      puts ""
+      message.instructions
       message.welcome
       self.start_input
     elsif @input == 'q' || @input == 'quit'
@@ -60,20 +52,17 @@ class Game
   end
 
   def evaluate_guess
+    num_correct_total
     if num_correct_position == 4
       @time2 = Time.now
       @elapsed_seconds = ((@time2 - @time1) % 60).round
       @elapsed_minutes = ((@time2 - @time1) / 60).floor
       message.elapsed_minutes = @elapsed_minutes
       message.elapsed_seconds = @elapsed_seconds
-      # puts "Congratulations! You guessed the sequence '#{@guess.upcase}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds."
-      # puts ""
-      # puts "Do you want to (p)lay again or (q)uit"
       message.congrats
       start_input
-    else # @num_correct_position < 4
-      puts "'#{@guess.upcase}' has #{num_correct_total} of the correct elements with #{num_correct_position} in the correct positions"
-      puts "You've taken #{@guess_count} guess" # update for single guess
+    else #@num_correct_position < 4
+      message.guess_progress
       game_flow
     end
   end
@@ -124,6 +113,7 @@ class Game
     tally_y << tally_y_code
 
     @num_correct_total = tally_r.min + tally_g.min + tally_b.min + tally_y.min
+    message.num_correct_total = @num_correct_total
 
   end
 
@@ -144,9 +134,7 @@ class Game
       @num_correct_position += 1
     end
     @num_correct_position
+    message.num_correct_position = @num_correct_position
   end
-
-  # def quit
-  # end
 
 end
