@@ -1,14 +1,17 @@
 class Game
-
+  attr_reader :message, :guess
   def initialize
     @guess_count = 0
+    @message = Message.new
+    @guess = guess
   end
-
-  def start_message
-    puts "Welcome to MASTERMIND"
-    puts " ~-~ " * 4
-    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-  end
+  #
+  # def start_message
+  #
+  #   # puts "Welcome to MASTERMIND"
+  #   # puts " ~-~ " * 4
+  #   # puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+  # end
 
   def start_input
     @input = gets.chomp.downcase
@@ -20,7 +23,7 @@ class Game
       puts "Instructions will go here, now that you've got it:"
       puts ""
       puts ""
-      start_message
+      message.welcome
       self.start_input
     elsif @input == 'q' || @input == 'quit'
     else
@@ -35,21 +38,24 @@ class Game
   end
 
   def game_flow
-    puts "I have generated a beginner sequence with four elements made up of: (r)ed,
-    (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
-    What's your guess?"
-    @guess = gets.chomp
+    @message.whats_your_guess
+    @guess = gets.chomp.downcase
     if @guess == 'q' || @guess == 'quit'
     elsif @guess == 'c' || @guess == 'cheat'
       puts @sequence.secret_code.join.upcase
       self.game_flow
     elsif @guess.length > 4
       puts "That's too long!"
+      self.game_flow
     elsif @guess.length < 4
       puts "That's too short!"
+      self.game_flow
     elsif @guess.length == 4
       @guess_count += 1
+      message.guess = @guess
+      message.guess_count = @guess_count
       evaluate_guess
+    #add if statement if the input isnt those 4 letters
     end
   end
 
@@ -58,9 +64,12 @@ class Game
       @time2 = Time.now
       @elapsed_seconds = ((@time2 - @time1) % 60).round
       @elapsed_minutes = ((@time2 - @time1) / 60).floor
-      puts "Congratulations! You guessed the sequence '#{@guess.upcase}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds."
-      puts ""
-      puts "Do you want to (p)lay again or (q)uit"
+      message.elapsed_minutes = @elapsed_minutes
+      message.elapsed_seconds = @elapsed_seconds
+      # puts "Congratulations! You guessed the sequence '#{@guess.upcase}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds."
+      # puts ""
+      # puts "Do you want to (p)lay again or (q)uit"
+      message.congrats
       start_input
     else # @num_correct_position < 4
       puts "'#{@guess.upcase}' has #{num_correct_total} of the correct elements with #{num_correct_position} in the correct positions"
