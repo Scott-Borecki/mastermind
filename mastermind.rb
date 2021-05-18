@@ -6,4 +6,5 @@ require './lib/turn'
 
 game = Game.new
 
-game.start
+game.start_message
+game.start_input

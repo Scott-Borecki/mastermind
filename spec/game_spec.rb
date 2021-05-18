@@ -11,5 +11,8 @@ RSpec.describe Game do
       expect(game).to be_a(Game)
     end
 
+    
+
   end
+
 end
