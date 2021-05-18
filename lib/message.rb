@@ -38,7 +38,11 @@ guesses."
     puts ""
     puts "'#{@guess.upcase}' has #{@num_correct_total} of the correct elements with #{@num_correct_position} in the correct positions."
     puts ""
-    puts "You've taken #{@guess_count} guess" # update for single guess
+    if @guess_count == 1
+      puts "You've taken #{@guess_count} guess"
+    else
+      puts "You've taken #{@guess_count} guesses"
+    end
   end
 
   def congrats
