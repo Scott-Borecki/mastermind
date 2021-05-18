@@ -116,6 +116,13 @@ class Game
 
     @num_correct_total = tally_r.min + tally_g.min + tally_b.min + tally_y.min
 
+
+    # tally_array = [[tally_y_guess,tally_y_code] ... ]
+    # @num_correct_total = 0
+    # tally_array.each do |tally|
+    #   @num_correct_total += tally.min
+    # end
+
   end
 
   def num_correct_position
