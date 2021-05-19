@@ -55,8 +55,8 @@ class Game
   end
 
   def evaluate_guess
-    num_correct_total
-    if num_correct_position == 4
+    num_correct_total(guess = @guess.split(//), sequence = @sequence.secret_code)
+    if num_correct_position(guess = @guess.split(//), sequence = @sequence.secret_code) == 4
       you_win
     else
       message.guess_progress
@@ -64,9 +64,9 @@ class Game
     end
   end
 
-  def num_correct_total
-    guess_array = @guess.split(//)
-    sequence_array = @sequence.secret_code
+  def num_correct_total(guess, sequence)
+    guess_array = guess
+    sequence_array = sequence
     color_array = ['r', 'g', 'b', 'y']
     guess_array_correct = color_array.map { |color| guess_array.count(color) }
     sequence_array_correct = color_array.map { |color| sequence_array.count(color) }
@@ -75,9 +75,9 @@ class Game
     message.num_correct_total = num_correct_total
   end
 
-  def num_correct_position
-    guess_array = @guess.split(//)
-    sequence_array = @sequence.secret_code
+  def num_correct_position(guess, sequence)
+    guess_array = guess
+    sequence_array = sequence
     zipped_code = sequence_array.zip(guess_array)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
     message.num_correct_position = num_correct_position
