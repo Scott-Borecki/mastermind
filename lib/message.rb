@@ -1,4 +1,5 @@
 class Message
+  # use attr_accessor because object values need to be overwritten and readable
   attr_accessor :guess, :elapsed_minutes, :elapsed_seconds, :guess_count, :num_correct_position, :num_correct_total
 
   def initialize
@@ -17,6 +18,11 @@ class Message
     puts ""
   end
 
+  def you_got_this
+    puts "That seemed tough, try again"
+    puts ""
+  end
+
   def instructions
     puts ""
     puts "The object of MASTERMIND is to guess a secret code consisting of a series of 4
@@ -31,6 +37,16 @@ guesses."
     puts "I have generated a beginner sequence with four elements made up of: (r)ed,
     (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
     What's your guess?"
+    puts ""
+  end
+
+  def too_long
+    puts "That's too long!"
+    puts ""
+  end
+
+  def too_short
+    puts "That's too short!"
     puts ""
   end
 
