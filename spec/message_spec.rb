@@ -10,11 +10,10 @@ RSpec.describe Message do
       message = Message.new
       expect(message).to be_a(Message)
     end
-
-    it 'somethiung' do
-      
-    end
-
+    #
+    # it 'something' do
+    #
+    # end
 
   end
 end
