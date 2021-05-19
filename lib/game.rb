@@ -42,14 +42,9 @@ class Game
     @guess = gets.chomp.downcase
     if @guess == 'q' || @guess == 'quit'
     elsif @guess == 'c' || @guess == 'cheat'
-      puts @sequence.secret_code.join.upcase
-      self.game_flow
-    elsif @guess.length > 4
-      message.too_long
-      self.game_flow
-    elsif @guess.length < 4
-      message.too_short
-      self.game_flow
+      puts @sequence.secret_code.join.upcase; self.game_flow
+    elsif @guess.length > 4 || @guess.length < 4
+      @guess.length > 4 ? (message.too_long; self.game_flow) : (message.too_short; self.game_flow)
     elsif @guess.length == 4
       @guess_count += 1
       message.guess = @guess
