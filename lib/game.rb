@@ -68,73 +68,22 @@ class Game
   end
 
   def num_correct_total
-    @guess_array = @guess.split(//)
-    @sequence_array = @sequence.secret_code
-    # @guess_array = ['r', 'g', 'b', 'y']
-    # @sequence = ['y','y','y','y']
-
-    tally_r_guess = @guess_array.count do |letter|
-      letter.include?("r")
-    end
-    tally_g_guess = @guess_array.count do |letter|
-      letter.include?("g")
-    end
-    tally_b_guess = @guess_array.count do |letter|
-      letter.include?("b")
-    end
-    tally_y_guess = @guess_array.count do |letter|
-      letter.include?("y")
-    end
-
-    tally_r_code = @sequence_array.count do |letter|
-      letter.include?("r")
-    end
-    tally_g_code = @sequence_array.count do |letter|
-      letter.include?("g")
-    end
-    tally_b_code = @sequence_array.count do |letter|
-      letter.include?("b")
-    end
-    tally_y_code = @sequence_array.count do |letter|
-      letter.include?("y")
-    end
-
-    tally_r = []
-    tally_r << tally_r_guess
-    tally_r << tally_r_code
-    tally_g = []
-    tally_g << tally_g_guess
-    tally_g << tally_g_code
-    tally_b = []
-    tally_b << tally_b_guess
-    tally_b << tally_b_code
-    tally_y = []
-    tally_y << tally_y_guess
-    tally_y << tally_y_code
-
-    @num_correct_total = tally_r.min + tally_g.min + tally_b.min + tally_y.min
-    message.num_correct_total = @num_correct_total
-
+    guess_array = @guess.split(//)
+    sequence_array = @sequence.secret_code
+    color_array = ['r', 'g', 'b', 'y']
+    guess_array_correct = color_array.map { |color| guess_array.count(color) }
+    sequence_array_correct = color_array.map { |color| sequence_array.count(color) }
+    zipper = guess_array_correct.zip(sequence_array_correct)
+    num_correct_total = zipper.sum { |index| index.min }
+    message.num_correct_total = num_correct_total
   end
 
   def num_correct_position
-    @guess_array = @guess.split(//)
-    @sequence_array = @sequence.secret_code
-    @num_correct_position = 0
-    if @guess_array[0] == @sequence_array[0]
-      @num_correct_position += 1
-    end
-    if @guess_array[1] == @sequence_array[1]
-      @num_correct_position += 1
-    end
-    if @guess_array[2] == @sequence_array[2]
-      @num_correct_position += 1
-    end
-    if @guess_array[3] == @sequence_array[3]
-      @num_correct_position += 1
-    end
-    @num_correct_position
-    message.num_correct_position = @num_correct_position
+    guess_array = @guess.split(//)
+    sequence_array = @sequence.secret_code
+    zipped_code = sequence_array.zip(guess_array)
+    num_correct_position = zipped_code.count { |index| index[0] == index[1] }
+    message.num_correct_position = num_correct_position
   end
 
 end
