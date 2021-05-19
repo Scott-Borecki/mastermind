@@ -43,7 +43,7 @@ guesses." "\n" "\n"
   end
 
   def guess_progress
-    puts "\n" "'#{@guess.upcase}' has #{@num_correct_total} of the correct elements with #{@num_correct_position} in the correct positions." "\n"
+    puts "\n" "'#{colored_circles}' has #{@num_correct_total} of the correct elements with #{@num_correct_position} in the correct positions." "\n"
     if @guess_count == 1
       puts "You've taken #{@guess_count} guess"
     else
@@ -54,6 +54,17 @@ guesses." "\n" "\n"
   def congrats
     puts "\n" "Congratulations! You guessed the sequence '#{@guess.upcase}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds." "\n"
     puts "Do you want to (p)lay again or (q)uit?" "\n"
+  end
+
+  def colored_circles(guess_colors = @guess.split(//))
+      color_hash = {
+        "r" => "\u{1f534}",
+        "y" => "\u{1f7e1}",
+        "g" => "\u{1f7e2}",
+        "b" => "\u{1f535}",
+      }
+
+      (guess_colors.map { |color| color_hash[color] }).join
   end
 
 end
