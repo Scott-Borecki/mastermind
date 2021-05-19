@@ -26,7 +26,8 @@ RSpec.describe Sequence do
       sequence.generate
       expect(sequence.secret_code).to be_a(Array)
       expect(sequence.secret_code.length).to eq(4)
-      # expect(sequence.secret_code.include?('rgby')).to be true
+      expect(sequence.secret_code.none?(/[rgby]/)).to be false
+      expect(sequence.secret_code.all?(/[rgby]/)).to be true
     end
 
   end
