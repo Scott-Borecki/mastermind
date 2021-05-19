@@ -18,30 +18,30 @@ RSpec.describe Game do
 
       it '#num_correct_total test 1' do
         game = Game.new
-        guess = ['b', 'b', 'b', 'b']
-        sequence = ['r', 'y', 'y', 'g']
-        expect(game.num_correct_total(guess, sequence)).to eq(0)
+        guess_colors = ['b', 'b', 'b', 'b']
+        sequence_colors = ['r', 'y', 'y', 'g']
+        expect(game.num_correct_total(guess_colors, sequence_colors)).to eq(0)
       end
 
       it '#num_correct_total test 2' do
         game = Game.new
-        guess = ['b', 'g', 'y', 'g']
-        sequence = ['r', 'y', 'y', 'g']
-        expect(game.num_correct_total(guess, sequence)).to eq(2)
+        guess_colors = ['b', 'g', 'y', 'g']
+        sequence_colors = ['r', 'y', 'y', 'g']
+        expect(game.num_correct_total(guess_colors, sequence_colors)).to eq(2)
       end
 
       it '#num_correct_total test 3' do
         game = Game.new
-        guess = ['y', 'b', 'r', 'g']
-        sequence = ['g', 'y', 'b', 'r']
-        expect(game.num_correct_total(guess, sequence)).to eq(4)
+        guess_colors = ['y', 'b', 'r', 'g']
+        sequence_colors = ['g', 'y', 'b', 'r']
+        expect(game.num_correct_total(guess_colors, sequence_colors)).to eq(4)
       end
 
       it '#num_correct_total test 4' do
         game = Game.new
-        guess = ['g', 'y', 'b', 'r']
-        sequence = ['g', 'y', 'b', 'r']
-        expect(game.num_correct_total(guess, sequence)).to eq(4)
+        guess_colors = ['g', 'y', 'b', 'r']
+        sequence_colors = ['g', 'y', 'b', 'r']
+        expect(game.num_correct_total(guess_colors, sequence_colors)).to eq(4)
       end
 
     end
@@ -50,30 +50,30 @@ RSpec.describe Game do
 
       it '#num_correct_position test 1' do
         game = Game.new
-        guess = ['b', 'b', 'b', 'b']
-        sequence = ['r', 'y', 'y', 'g']
-        expect(game.num_correct_position(guess, sequence)).to eq(0)
+        guess_colors = ['b', 'b', 'b', 'b']
+        sequence_colors = ['r', 'y', 'y', 'g']
+        expect(game.num_correct_position(guess_colors, sequence_colors)).to eq(0)
       end
 
       it '#num_correct_position test 2' do
         game = Game.new
-        guess = ['b', 'g', 'y', 'g']
-        sequence = ['r', 'y', 'y', 'g']
-        expect(game.num_correct_position(guess, sequence)).to eq(2)
+        guess_colors = ['b', 'g', 'y', 'g']
+        sequence_colors = ['r', 'y', 'y', 'g']
+        expect(game.num_correct_position(guess_colors, sequence_colors)).to eq(2)
       end
 
       it '#num_correct_position test 3' do
         game = Game.new
-        guess = ['y', 'b', 'r', 'g']
-        sequence = ['g', 'y', 'b', 'r']
-        expect(game.num_correct_position(guess, sequence)).to eq(0)
+        guess_colors = ['y', 'b', 'r', 'g']
+        sequence_colors = ['g', 'y', 'b', 'r']
+        expect(game.num_correct_position(guess_colors, sequence_colors)).to eq(0)
       end
 
       it '#num_correct_position test 4' do
         game = Game.new
-        guess = ['g', 'y', 'b', 'r']
-        sequence = ['g', 'y', 'b', 'r']
-        expect(game.num_correct_position(guess, sequence)).to eq(4)
+        guess_colors = ['g', 'y', 'b', 'r']
+        sequence_colors = ['g', 'y', 'b', 'r']
+        expect(game.num_correct_position(guess_colors, sequence_colors)).to eq(4)
       end
 
     end

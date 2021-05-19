@@ -55,7 +55,7 @@ class Game
   end
 
   def evaluate_guess
-    num_correct_total(guess = @guess.split(//), sequence = @sequence.secret_code)
+    num_correct_total
     if num_correct_position(guess = @guess.split(//), sequence = @sequence.secret_code) == 4
       you_win
     else
@@ -64,21 +64,17 @@ class Game
     end
   end
 
-  def num_correct_total(guess, sequence)
-    guess_array = guess
-    sequence_array = sequence
-    color_array = ['r', 'g', 'b', 'y']
-    guess_array_correct = color_array.map { |color| guess_array.count(color) }
-    sequence_array_correct = color_array.map { |color| sequence_array.count(color) }
-    zipper = guess_array_correct.zip(sequence_array_correct)
+  def num_correct_total(guess_colors = @guess.split(//), sequence_colors = @sequence.secret_code)
+    colors = ['r', 'g', 'b', 'y']
+    guess_nums_correct = colors.map { |color| guess_colors.count(color) }
+    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
+    zipper = guess_nums_correct.zip(sequence_nums_correct)
     num_correct_total = zipper.sum { |index| index.min }
     message.num_correct_total = num_correct_total
   end
 
-  def num_correct_position(guess, sequence)
-    guess_array = guess
-    sequence_array = sequence
-    zipped_code = sequence_array.zip(guess_array)
+  def num_correct_position(guess_colors, sequence_colors)
+    zipped_code = sequence_colors.zip(guess_colors)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
     message.num_correct_position = num_correct_position
   end
