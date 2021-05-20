@@ -61,7 +61,7 @@ class Game
     if num_correct_position(guess = @guess.split(//), sequence = @sequence.secret_code) == 4
       you_win
     else
-      message.guess_progress
+      message.progress_report
       game_flow
     end
   end

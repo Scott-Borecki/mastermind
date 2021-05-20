@@ -93,7 +93,7 @@ class Message
     puts "That's too short! Remember, you need to type 4 letters." "\n"
   end
 
-  def guess_progress
+  def progress_report
     # puts "\n"
     # puts "\u{1f9e0} " * 24
     # puts "\n"
