@@ -23,12 +23,14 @@ class Game
   def play
     generate_sequence
     @time1 = Time.now
+    message.heres_your_choices
+    @guess_count = 0
     game_flow
   end
 
   def instructions
     message.instructions
-    message.welcome
+    message.lets_play
     self.start_input
   end
 
