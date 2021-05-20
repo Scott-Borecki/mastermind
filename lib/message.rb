@@ -22,37 +22,59 @@ class Message
   end
 
   def instructions
-    puts "\n" "INSTRUCTIONS:" "\n" "The object of MASTERMIND is to guess a secret code consisting of a series of 4
-colored pegs. Each guest results in feedback narrowing down the possibilities of the
-code. The winner is the player who solves his opponent's secret code with fewer
-guesses." "\n" "\n"
+    puts "\n" "INSTRUCTIONS:" "\n" "
+    The object of MASTERMIND is to guess a 4 letter secret code.
+    Each guess results in feedback narrowing down the possibilities of the code.
+    You win if you guess the secret code.
+
+    Hope you're ready for a real barrel of fun... oh wait, wrong game ¯\\_(ツ)_/¯." "\n" "\n"
   end
 
   def whats_your_guess
-    puts "\n" "I have generated a beginner sequence with four elements made up of: (r)ed,
-    (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
-    What's your guess?" "\n"
+    puts "\n"
+    puts "\u{1f9e0} " * 25
+    puts "\n" "I have generated a beginner sequence with four letters made up of:" "\n"
+    puts "(r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game." "\n""\n"
+    puts "What's your guess?" "\n"
   end
 
   def too_long
-    puts "That's too long!" "\n"
+    puts "\n"
+    puts "That's too long!  Remember, you only need to type 4 letters." "\n"
   end
 
   def too_short
-    puts "That's too short!" "\n"
+    puts "\n"
+    puts "That's too short! Remember, you need to type 4 letters." "\n"
   end
 
   def guess_progress
+    puts "\n"
+    puts "\u{1f9e0} " * 25
     puts "\n" "'#{colored_circles}' has #{@num_correct_total} of the correct elements with #{@num_correct_position} in the correct positions." "\n"
     if @guess_count == 1
-      puts "You've taken #{@guess_count} guess"
+      puts "You've taken #{@guess_count} guess""\n""\n"
     else
-      puts "You've taken #{@guess_count} guesses"
+      puts "You've taken #{@guess_count} guesses""\n""\n"
     end
   end
 
   def congrats
-    puts "\n" "Congratulations! You guessed the sequence '#{@guess.upcase}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds." "\n"
+    puts "\n"
+    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\u{1f38a}\u{1f389}" * 25
+    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\u{1f38a}\u{1f389}" * 25
+    puts "\u{1f389}\u{1f38a}" * 25
+
+    puts "\n" "Congratulations! You guessed the sequence '#{colored_circles}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds." "\n"
+    puts "\n"
+    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\u{1f38a}\u{1f389}" * 25
+    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\u{1f38a}\u{1f389}" * 25
+    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\n"
     puts "Do you want to (p)lay again or (q)uit?" "\n"
   end
 

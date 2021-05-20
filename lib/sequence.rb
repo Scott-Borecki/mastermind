@@ -11,4 +11,8 @@ class Sequence
     4.times { @secret_code << colors.sample }
   end
 
+  def cheat_code
+    secret_code.join.upcase
+  end
+
 end
