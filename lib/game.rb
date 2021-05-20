@@ -1,21 +1,23 @@
 class Game
-  attr_reader :message, :guess, :guess_count
+  attr_reader :guess, :guess_count
 
   def initialize
     @guess_count = 0
-    @message = Message.new
     @guess = ""
+  end
+
+  def message
+    Message.new
   end
 
   def start_input
     @input = gets.chomp.downcase
-    if @input == 'p' || @input == "play"
-      play
-    elsif @input == 'i' || @input == 'instructions'
-      instructions
-    elsif @input == 'q' || @input == 'quit'
+    play if @input == 'p' || @input == "play"
+    instructions if @input == 'i' || @input == 'instructions'
+    if @input == 'q' || @input == 'quit'
+      puts "goodbye" # make message.goodbye method
     else
-      message.you_got_this
+      puts message.you_got_this
       self.start_input
     end
   end
@@ -23,14 +25,14 @@ class Game
   def play
     generate_sequence
     @time1 = Time.now
-    message.heres_your_choices
+    puts message.heres_your_choices
     @guess_count = 0
     game_flow
   end
 
   def instructions
-    message.instructions
-    message.lets_play
+    puts message.instructions
+    puts message.lets_play
     self.start_input
   end
 
@@ -40,20 +42,18 @@ class Game
   end
 
   def game_flow
-    message.whats_your_guess
+    puts message.whats_your_guess
     @guess = gets.chomp.downcase
     if @guess == 'q' || @guess == 'quit'
     elsif @guess == 'c' || @guess == 'cheat'
       puts @sequence.cheat_code; self.game_flow
     elsif @guess.length != 4
-      @guess.length > 4 ? (message.too_long; self.game_flow) : (message.too_short; self.game_flow)
+      @guess.length > 4 ? (puts message.too_long; self.game_flow) : (puts message.too_short; self.game_flow)
     # elsif @guess.none?(/[rgby]/)
     #   message.you_got_this
       # self.game_flow
     elsif @guess.length == 4
       @guess_count += 1
-      message.guess = @guess
-      message.guess_count = @guess_count
       evaluate_guess
     # consider adding conditional statement for if the input isnt those 4 letters
     end
@@ -64,7 +64,7 @@ class Game
     if num_correct_position == 4
       you_win
     else
-      message.progress_report
+      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position)
       game_flow
     end
   end
@@ -75,22 +75,18 @@ class Game
     sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
     zipper = guess_nums_correct.zip(sequence_nums_correct)
     num_correct_total = zipper.sum { |index| index.min }
-    message.num_correct_total = num_correct_total
   end
 
   def num_correct_position(guess_colors = @guess.split(//), sequence_colors = @sequence.secret_code)
     zipped_code = sequence_colors.zip(guess_colors)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
-    message.num_correct_position = num_correct_position
   end
 
   def you_win
-    @time2 = Time.now
-    @elapsed_seconds = ((@time2 - @time1) % 60).round
-    @elapsed_minutes = ((@time2 - @time1) / 60).floor
-    message.elapsed_minutes = @elapsed_minutes
-    message.elapsed_seconds = @elapsed_seconds
-    message.congrats
+    time2 = Time.now
+    elapsed_seconds = ((time2 - @time1) % 60).round
+    elapsed_minutes = ((time2 - @time1) / 60).floor
+    puts message.congrats(@guess, @guess_count, elapsed_minutes, elapsed_seconds)
     start_input
   end
 

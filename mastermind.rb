@@ -6,5 +6,5 @@ require './lib/message'
 
 game = Game.new
 
-game.message.welcome
+puts game.message.welcome
 game.start_input
