@@ -12,9 +12,21 @@ class Message
   end
 
   def welcome
-    puts "Welcome to MASTERMIND"
-    puts " ~-~ " * 4
-    puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?" "\n"
+    puts "\n"
+    puts "\n"
+    puts "\n"
+    puts "                \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} "
+    puts "\n"
+    puts "     \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} Welcome to MASTERMIND \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0}"
+    puts "\n"
+    puts "               \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} "
+    puts "\n"
+    puts "\n"
+    puts "\n"
+    puts "      Would you like to (p)lay, read the (i)nstructions, or (q)uit?" "\n"
+    puts "                         ^                ^                  ^"
+    puts "\n"
+    puts "\n"
   end
 
   def you_got_this
@@ -22,20 +34,53 @@ class Message
   end
 
   def instructions
-    puts "\n" "INSTRUCTIONS:" "\n" "
-    The object of MASTERMIND is to guess a 4 letter secret code.
-    Each guess results in feedback narrowing down the possibilities of the code.
-    You win if you guess the secret code.
+    puts "\n" "                   \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} INSTRUCTIONS: \u{1f9e0} \u{1f9e0} \u{1f9e0} \u{1f9e0} " "\n" "
+            The object of MASTERMIND is to guess a secret code.
+  When you start the game, a 4-color secret code sequence is randomly generated.
 
-    Hope you're ready for a real barrel of fun... oh wait, wrong game ¯\\_(ツ)_/¯." "\n" "\n"
+     To make a guess (if you dare!), enter a four-letter combination that
+             consists of the first letter of the color name:
+
+             \u{1f534} (r)ed, \u{1f7e2} (g)reen, \u{1f535} (b)lue, and \u{1f7e1} (y)ellow.
+                 ^         ^           ^              ^
+    (Hint:  The secret code can have the same color in multiple positions!)
+
+  Each guess results in feedback narrowing down the possibilities of the code.
+
+                 You win when you guess the secret code!
+
+
+            Hope you're ready for a real barrel of fun...
+                        ...oh wait, wrong game ¯\\_(ツ)_/¯" "\n"
+  end
+
+
+  def lets_play
+    puts "\n"
+    puts "\n"
+    puts "      Would you like to (p)lay, read the (i)nstructions, or (q)uit?" "\n"
+    puts "                         ^                ^                  ^"
+    puts "\n"
+    puts "\n"
+  end
+
+  def heres_your_choices
+    puts "\n"
+    # puts "\u{1f9e0} \u{1f9e0} \u{1f9e0}                                                         \u{1f9e0} \u{1f9e0} \u{1f9e0}"
+    puts "\n" "                          Let's Play MASTERMIND!"
+    puts "\n" "                  I have generated a beginner sequence"
+    puts      "                     with four letters made up of:" "\n""\n"
+    puts "            \u{1f534} (r)ed, \u{1f7e2} (g)reen, \u{1f535} (b)lue, and \u{1f7e1} (y)ellow." "\n"
+    puts "                ^         ^           ^              ^"
+    puts "                 Use (q)uit at any time to end the game."
+    puts "                      ^" "\n""\n"
   end
 
   def whats_your_guess
-    puts "\n"
-    puts "\u{1f9e0} " * 25
-    puts "\n" "I have generated a beginner sequence with four letters made up of:" "\n"
-    puts "(r)ed, (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game." "\n""\n"
-    puts "What's your guess?" "\n"
+    puts "\n""\n"
+    puts "                           What's your guess?"
+    puts " ////--<========--<=======--<====--<===--<==|"
+    puts "||||"
   end
 
   def too_long
@@ -49,33 +94,37 @@ class Message
   end
 
   def guess_progress
-    puts "\n"
-    puts "\u{1f9e0} " * 25
-    puts "\n" "'#{colored_circles}' has #{@num_correct_total} of the correct elements with #{@num_correct_position} in the correct positions." "\n"
-    if @guess_count == 1
-      puts "You've taken #{@guess_count} guess""\n""\n"
-    else
-      puts "You've taken #{@guess_count} guesses""\n""\n"
-    end
+    # puts "\n"
+    # puts "\u{1f9e0} " * 24
+    # puts "\n"
+    puts "                       Guess#       #{@guess_count}"
+    puts "                       Guess:   #{colored_circles}"
+    puts "              Correct Colors:     * #{@num_correct_total} *"
+    puts "           Correct Positions:    ** #{@num_correct_position} **"
+    # puts "\n" "#{colored_circles} has #{@num_correct_total} of the correct colors with #{@num_correct_position} in the correct positions." "\n"
   end
 
   def congrats
-    puts "\n"
-    puts "\u{1f389}\u{1f38a}" * 25
-    puts "\u{1f38a}\u{1f389}" * 25
-    puts "\u{1f389}\u{1f38a}" * 25
-    puts "\u{1f38a}\u{1f389}" * 25
-    puts "\u{1f389}\u{1f38a}" * 25
+    puts "\n""\n"
+    puts "\u{1f389}\u{1f38a}" * 18
+    puts "\u{1f38a}\u{1f389}" * 18
+    puts "\u{1f389}\u{1f38a}" * 18
+    puts "\u{1f38a}\u{1f389}" * 18
+    puts "\u{1f389}\u{1f38a}" * 18
 
-    puts "\n" "Congratulations! You guessed the sequence '#{colored_circles}' in #{@guess_count} guesses over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds." "\n"
+    puts "\n" "\n""                            Congratulations!" "\n""\n"
+    puts          "                        You guessed the sequence!""\n""\n"
+    puts          "                                #{colored_circles}""\n""\n"
+    puts          "                              in #{@guess_count} guesses"
+    puts          "                       over #{@elapsed_minutes} minutes, #{@elapsed_seconds} seconds." "\n""\n"
     puts "\n"
-    puts "\u{1f389}\u{1f38a}" * 25
-    puts "\u{1f38a}\u{1f389}" * 25
-    puts "\u{1f389}\u{1f38a}" * 25
-    puts "\u{1f38a}\u{1f389}" * 25
-    puts "\u{1f389}\u{1f38a}" * 25
-    puts "\n"
-    puts "Do you want to (p)lay again or (q)uit?" "\n"
+    puts "\u{1f389}\u{1f38a}" * 18
+    puts "\u{1f38a}\u{1f389}" * 18
+    puts "\u{1f389}\u{1f38a}" * 18
+    puts "\u{1f38a}\u{1f389}" * 18
+    puts "\u{1f389}\u{1f38a}" * 18
+    puts "\n""\n""\n"
+    puts "Do you want to (p)lay again or (q)uit?" "\n""\n"
   end
 
   def colored_circles(guess_colors = @guess.split(//))
