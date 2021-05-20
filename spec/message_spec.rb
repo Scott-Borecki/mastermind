@@ -19,7 +19,7 @@ RSpec.describe Message do
   describe 'object methods' do
 
     it 'outputs colored circles' do
-      guess_colors = ['r', 'b', 'y', 'g',]
+      guess_colors = "rbyg"
       expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
 
       expect(@message.colored_circles(guess_colors)).to be_a(String)
@@ -82,17 +82,30 @@ RSpec.describe Message do
       expect(@message.too_short).to include(expected)
     end
 
-    # Need to look up RSpec expections to make this one work.  Include isn't working.
-    #
-    # it 'has progress_report message' do
-    #   expected = "1 \u{1f535}\u{1f535}\u{1f535}\u{1f535} 3 2"
-    #
-    #   expect(@message.progress_report(1, "bbbb", 3, 2)).to be_a(String)
-    #   expect(@message.progress_report(1, "bbbb", 3, 2)).to include(expected)
-    # end
+    it 'has progress_report message' do
+      expected_1 = "\u{1f535}\u{1f535}\u{1f535}\u{1f535}"
+      expected_2 = "4"
+      expected_3 = "1"
+      expected_4 = "40"
+
+      expect(@message.progress_report('bbbb', 4, 1, 40)).to be_a(String)
+      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_1)
+      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_2)
+      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_3)
+      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_4)
+    end
 
     it 'has congrats message' do
+      expected_1 = "\u{1f535}\u{1f535}\u{1f535}\u{1f535}"
+      expected_2 = "4"
+      expected_3 = "1"
+      expected_4 = "40"
 
+      expect(@message.congrats('bbbb', 4, 1, 40)).to be_a(String)
+      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_1)
+      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_2)
+      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_3)
+      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_4)
     end
   end
 end

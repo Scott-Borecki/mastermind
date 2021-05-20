@@ -64,7 +64,7 @@ class Game
     if num_correct_position == 4
       you_win
     else
-      puts message.progress_report(@guess_count, @guess, num_correct_total, num_correct_position)
+      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position)
       game_flow
     end
   end

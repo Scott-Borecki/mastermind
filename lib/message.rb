@@ -94,7 +94,7 @@ class Message
     "
   end
 
-  def progress_report(guess_count, guess, num_correct_total, num_correct_position)
+  def progress_report(guess, guess_count, num_correct_total, num_correct_position)
     "                       Guess#       #{guess_count}
                        Guess:   #{colored_circles(guess)}
               Correct Colors:     * #{num_correct_total} *
