@@ -47,6 +47,9 @@ class Game
       puts @sequence.cheat_code; self.game_flow
     elsif @guess.length != 4
       @guess.length > 4 ? (message.too_long; self.game_flow) : (message.too_short; self.game_flow)
+    # elsif @guess.none?(/[rgby]/)
+    #   message.you_got_this
+      # self.game_flow
     elsif @guess.length == 4
       @guess_count += 1
       message.guess = @guess
