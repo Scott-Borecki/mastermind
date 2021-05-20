@@ -1,10 +1,10 @@
 class Game
-  attr_reader :message, :guess
+  attr_reader :message, :guess, :guess_count
 
   def initialize
     @guess_count = 0
     @message = Message.new
-    @guess = guess
+    @guess = ""
   end
 
   def start_input
