@@ -12,7 +12,7 @@ class Sequence
   end
 
   def cheat_code
-    secret_code.join.upcase
+    @secret_code.join.upcase
   end
 
 end

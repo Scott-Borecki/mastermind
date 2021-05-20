@@ -1,10 +1,10 @@
 class Game
-  attr_reader :message, :guess
+  attr_reader :message, :guess, :guess_count
 
   def initialize
     @guess_count = 0
     @message = Message.new
-    @guess = guess
+    @guess = ""
   end
 
   def start_input
@@ -47,6 +47,9 @@ class Game
       puts @sequence.cheat_code; self.game_flow
     elsif @guess.length != 4
       @guess.length > 4 ? (message.too_long; self.game_flow) : (message.too_short; self.game_flow)
+    # elsif @guess.none?(/[rgby]/)
+    #   message.you_got_this
+      # self.game_flow
     elsif @guess.length == 4
       @guess_count += 1
       message.guess = @guess
@@ -58,10 +61,10 @@ class Game
 
   def evaluate_guess
     num_correct_total
-    if num_correct_position(guess = @guess.split(//), sequence = @sequence.secret_code) == 4
+    if num_correct_position == 4
       you_win
     else
-      message.guess_progress
+      message.progress_report
       game_flow
     end
   end
@@ -75,7 +78,7 @@ class Game
     message.num_correct_total = num_correct_total
   end
 
-  def num_correct_position(guess_colors, sequence_colors)
+  def num_correct_position(guess_colors = @guess.split(//), sequence_colors = @sequence.secret_code)
     zipped_code = sequence_colors.zip(guess_colors)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
     message.num_correct_position = num_correct_position
