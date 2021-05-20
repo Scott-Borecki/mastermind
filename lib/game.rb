@@ -58,7 +58,7 @@ class Game
 
   def evaluate_guess
     num_correct_total
-    if num_correct_position(guess = @guess.split(//), sequence = @sequence.secret_code) == 4
+    if num_correct_position == 4
       you_win
     else
       message.progress_report
@@ -75,7 +75,7 @@ class Game
     message.num_correct_total = num_correct_total
   end
 
-  def num_correct_position(guess_colors, sequence_colors)
+  def num_correct_position(guess_colors = @guess.split(//), sequence_colors = @sequence.secret_code)
     zipped_code = sequence_colors.zip(guess_colors)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
     message.num_correct_position = num_correct_position
