@@ -10,15 +10,18 @@ class Game
     Message.new
   end
 
-  def start_input
-    @input = gets.chomp.downcase
-    play if @input == 'p' || @input == "play"
-    instructions if @input == 'i' || @input == 'instructions'
-    if @input == 'q' || @input == 'quit'
-      puts "goodbye" # make message.goodbye method
-    else
-      puts message.you_got_this
-      self.start_input
+  def start_input #loop?
+    loop do
+      @input = gets.chomp.downcase
+      play if @input == 'p' || @input == "play" #case statements
+      instructions if @input == 'i' || @input == 'instructions'
+      if @input == 'q' || @guess = 'q' || @guess = 'quit' || @input == 'quit'
+        puts "goodbye" # make message.goodbye method
+        return
+      else
+        puts message.you_got_this
+        # self.start_input#loop?
+      end
     end
   end
 
@@ -26,7 +29,7 @@ class Game
     generate_sequence
     @time1 = Time.now
     puts message.heres_your_choices
-    @guess_count = 0
+    @guess_count = 0 #do we need to redefine this? ref line 5
     game_flow
   end
 
@@ -42,23 +45,26 @@ class Game
   end
 
   def game_flow
-    puts message.whats_your_guess
-    @guess = gets.chomp.downcase
-    if @guess == 'q' || @guess == 'quit'
-    elsif @guess == 'c' || @guess == 'cheat'
-      puts @sequence.cheat_code; self.game_flow
-    elsif @guess.length != 4
-      @guess.length > 4 ? (puts message.too_long; self.game_flow) : (puts message.too_short; self.game_flow)
-    # elsif @guess.none?(/[rgby]/)
-    #   message.you_got_this
-      # self.game_flow
-    elsif @guess.length == 4
-      @guess_count += 1
-      evaluate_guess
-    # consider adding conditional statement for if the input isnt those 4 letters
+    loop do
+      puts message.whats_your_guess
+      @guess = gets.chomp.downcase
+      if @guess == 'q' || @guess == 'quit'
+        return #input needs to change too (ref 17) #return a quit
+      elsif @guess == 'c' || @guess == 'cheat'
+        puts @sequence.cheat_code; self.game_flow
+      elsif @guess.length != 4
+        @guess.length > 4 ? (puts message.too_long; self.game_flow) : (puts message.too_short; self.game_flow)
+      # elsif @guess.none?(/[rgby]/)
+      #   message.you_got_this
+        # self.game_flow
+      elsif @guess.length == 4
+        @guess_count += 1
+        evaluate_guess
+      # consider adding conditional statement for if the input isnt those 4 letters
+      end
     end
   end
-
+#abstract, encapsulate
   def evaluate_guess
     num_correct_total
     if num_correct_position == 4
