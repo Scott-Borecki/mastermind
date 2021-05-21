@@ -2,8 +2,8 @@ class Sequence
 
   attr_reader :secret_code
 
-  def initialize
-    @secret_code = []
+  def initialize # perhaps intialize (secret_code = []) ?
+    @secret_code = [] # make this @secret_code = secret_code?  Maybe that's why it wasn't working when calling the #secret_code method
   end
 
   def generate
