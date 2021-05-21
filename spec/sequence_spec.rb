@@ -38,5 +38,14 @@ RSpec.describe Sequence do
       expect(@sequence.cheat_code).to be_a(String)
       expect(@sequence.cheat_code).to eq(expected)
     end
+
+    it "has a secret_code that resets every turn" do
+      secret_code = ['r', 'g', 'b', 'y']
+      @sequence.secret_code << secret_code
+      @sequence.generate
+      expect(@sequence.secret_code).to be_an(Array)
+      expect(@sequence.secret_code.length).to eq(4)
+      expect(@sequence.secret_code).not_to eq(secret_code)
+    end
   end
 end
