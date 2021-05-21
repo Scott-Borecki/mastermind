@@ -4,7 +4,8 @@ require './lib/sequence'
 require './lib/game'
 require './lib/message'
 
-game = Game.new
+message = Message.new
+game = Game.new(message)
 
-puts game.message.welcome
+puts message.welcome
 game.start_input
