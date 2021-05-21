@@ -8,6 +8,7 @@ class Sequence
 
   def generate
     colors = ['r', 'g', 'b', 'y']
+    @secret_code = [] # test that it empties
     4.times { @secret_code << colors.sample }
   end
 
