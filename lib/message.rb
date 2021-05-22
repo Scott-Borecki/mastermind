@@ -139,7 +139,7 @@ class Message
         "b" => "\u{1f535}",
       }
 
-      (guess_colors.split(//).map { |color| color_hash[color] }).join
+      (guess_colors.split(//).map { |color| color_hash[color] }).join  # perhaps reference the guess_colors that is already split.  Check reference in Game class.
   end
 
 end
