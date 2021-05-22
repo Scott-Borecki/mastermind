@@ -1,11 +1,12 @@
 class Game
-  attr_reader :guess, :guess_count, :message, :sequence
+  attr_reader :guess, :guess_count, :message, :sequence, :timer
 
-  def initialize(message, sequence)
+  def initialize(message, sequence, timer)
     @guess_count = 0
     @guess = ""
     @message = message
     @sequence = sequence
+    @timer = timer
   end
 
   def start_input
@@ -36,9 +37,9 @@ class Game
 
   def play
     generate_sequence
-    @time1 = Time.now # make #start_timer method? reference a Timer class?
+    timer.start_time
     puts message.heres_your_choices
-    @guess_count = 0 # do we need to redefine this? ref line 5
+    @guess_count = 0
     game_flow
   end
 
@@ -101,12 +102,16 @@ class Game
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
   end
 
-# perhaps make Timer class?
+  def elapsed_minutes
+    timer.elapsed_time_minutes
+  end
+
+  def elapsed_seconds
+    timer.elapsed_time_seconds
+  end
 
   def you_win
-    time2 = Time.now
-    elapsed_seconds = ((time2 - @time1) % 60).round # split into multiple methods for SRP
-    elapsed_minutes = ((time2 - @time1) / 60).floor # split into multiple methods for SRP
+    timer.end_time
     puts message.congrats(@guess, @guess_count, elapsed_minutes, elapsed_seconds)
     start_input
   end
