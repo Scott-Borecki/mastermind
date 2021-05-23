@@ -21,13 +21,27 @@ RSpec.describe Timer do
   describe 'Object methods' do
 
     it "records the start time" do
-      expect(@timer.start_time).to be_an_instance_of(Time)
+      expect(@timer.start).to be_an_instance_of(Time)
     end
 
     it "records the end time" do
-      expect(@timer.end_time).to be_an_instance_of(Time)
+      expect(@timer.end).to be_an_instance_of(Time)
     end
 
+    it 'can convert time to minutes' do
+      @timer.instance_variable_set(:@start, Time.new(2021, 10, 31, 2, 0, 2, "-04:00"))
+      @timer.instance_variable_set(:@end, Time.new(2021, 10, 31, 2, 2, 2, "-04:00"))
+
+      expect(@timer.elapsed_minutes).to be_an_instance_of(Integer)
+      expect(@timer.elapsed_minutes).to eq(2)
+
+    end
+
+
+
+    it 'can count how much time has elapsed' do
+
+    end
     # it "knows the difference between start and end" do
     #   initial = Time.new(2020, 10, 31, 2, 2, 2, "-04:00").year
     #   final = Time.new(2021, 10, 31, 2, 2, 2, "-04:00").year
@@ -37,7 +51,7 @@ RSpec.describe Timer do
     #
     # end
 
-  
+
     # it "can convert time to minutes" do
     # #   initial = Time.new(2021, 10, 31, 2, 0, 2, "-04:00").min
     #   final = Time.new(2021, 10, 31, 2, 2, 2, "-04:00").min

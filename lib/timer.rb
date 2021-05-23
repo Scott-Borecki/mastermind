@@ -1,30 +1,23 @@
 class Timer
-  attr_reader :time0, :time1
-
+  
   def initialize
-    @time0 = 0
-    @time1 = 0
+    @start = ""
+    @end = ""
   end
 
-  def start_time
-    @time0 = Time.now
+  def start
+    @start = Time.now
   end
 
-  def end_time
-    @time1 = Time.now
+  def end
+    @end = Time.now
   end
 
-  def elapsed_time
-    @time1 - @time0
+  def elapsed_minutes
+    @end.min - @start.min
   end
 
-  def elapsed_time_minutes
-    (elapsed_time / 60).floor
+  def elapsed_seconds
+    @end.sec - @start.sec
   end
-
-  def elapsed_time_seconds
-    (elapsed_time % 60).round
-  end
-
-
 end
