@@ -37,7 +37,7 @@ class Game
 
   def play
     generate_sequence
-    timer.start_time
+    timer.start
     puts message.heres_your_choices
     @guess_count = 0
     game_flow
@@ -102,17 +102,17 @@ class Game
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
   end
 
-  def elapsed_minutes
-    timer.elapsed_time_minutes
-  end
-
-  def elapsed_seconds
-    timer.elapsed_time_seconds
-  end
+  # def elapsed_minutes
+  #   timer.elapsed_minutes
+  # end
+  #
+  # def elapsed_seconds
+  #   timer.elapsed_seconds
+  # end
 
   def you_win
-    timer.end_time
-    puts message.congrats(@guess, @guess_count, elapsed_minutes, elapsed_seconds)
+    timer.end
+    puts message.congrats(@guess, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
     start_input
   end
 
