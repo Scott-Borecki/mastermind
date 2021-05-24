@@ -18,6 +18,6 @@ class Timer
   end
 
   def elapsed_seconds
-    (@end - @start).round
+    ((@end - @start) % 60).round
   end
 end
