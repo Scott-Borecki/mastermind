@@ -31,12 +31,12 @@ class Game
   end
 
   def quit
-    puts "Goodbye, ya quitter!"
+    puts message.quitter
     exit!
   end
 
   def play
-    generate_sequence
+    sequence.generate
     timer.start
     puts message.heres_your_choices
     @guess_count = 0
@@ -49,24 +49,21 @@ class Game
     start_input
   end
 
-  def generate_sequence
-    sequence.generate
-  end
-
   def game_flow
     loop do
       puts message.whats_your_guess
       @guess = gets.chomp.downcase
-      guess_method # Let's come up with a better method name
+      submit_guess
     end
   end
 
-  def guess_method # Let's come up with a better method name
+  def submit_guess
     case
     when @guess == "q", @guess == "quit"
       quit
     when @guess == "c", @guess == "cheat"
-      puts sequence.cheat_code # make a method sequence.cheat_code?
+      puts sequence.cheat_code
+      # puts message.cheater ## add message for cheaters
     when @guess.length != 4
       @guess.length > 4 ? ( puts message.too_long ) : ( puts message.too_short )
     when @guess.delete("rbgy").empty?
@@ -82,14 +79,13 @@ class Game
     if num_correct_position == 4
       you_win
     else
-      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position) # perhaps put all arguments in a hash and reference the hash.  Then use the hash in messages?  Just an idea
+      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position)
       game_flow
     end
   end
-# make new method for @guess.split(//) called #guess_array
-# make sequence.secret_code it's own method
-# split into multiple methods
-  def num_correct_total(guess_colors = @guess.split(//), sequence_colors = sequence.secret_code)
+
+  # split into multiple methods
+  def num_correct_total(guess_colors = guesses, sequence_colors = sequence.secret_code)
     colors = ['r', 'g', 'b', 'y'] # make this its own method?
     guess_nums_correct = colors.map { |color| guess_colors.count(color) } # make this one method with an argument
     sequence_nums_correct = colors.map { |color| sequence_colors.count(color) } # make this one method with an argument
@@ -97,18 +93,14 @@ class Game
     num_correct_total = zipper.sum { |index| index.min }
   end
 
-  def num_correct_position(guess_colors = @guess.split(//), sequence_colors = sequence.secret_code)
+  def num_correct_position(guess_colors = guesses, sequence_colors = sequence.secret_code)
     zipped_code = sequence_colors.zip(guess_colors)
     num_correct_position = zipped_code.count { |index| index[0] == index[1] }
   end
 
-  # def elapsed_minutes
-  #   timer.elapsed_minutes
-  # end
-  #
-  # def elapsed_seconds
-  #   timer.elapsed_seconds
-  # end
+  def guesses
+    @guess.split(//)
+  end
 
   def you_win
     timer.end

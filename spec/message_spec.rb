@@ -47,6 +47,13 @@ RSpec.describe Message do
       expect(@message.instructions).to include(expected)
     end
 
+    it 'has quitter message' do
+      expected = "Goodbye, ya quitter!"
+
+      expect(@message.quitter).to be_a(String)
+      expect(@message.quitter).to include(expected)
+    end
+
     it 'has lets_play message' do
       expected = "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
 

@@ -1,5 +1,5 @@
 class Timer
-  
+
   def initialize
     @start = ""
     @end = ""
@@ -14,10 +14,10 @@ class Timer
   end
 
   def elapsed_minutes
-    @end.min - @start.min
+    ((@end - @start) / 60).floor
   end
 
   def elapsed_seconds
-    @end.sec - @start.sec
+    (@end - @start).round
   end
 end
