@@ -18,14 +18,6 @@ RSpec.describe Message do
 
   describe 'object methods' do
 
-    it 'outputs colored circles' do
-      guesses = ["r", "b", "y", "g"]
-      expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
-
-      expect(@message.colored_circles(guesses)).to be_a(String)
-      expect(@message.colored_circles(guesses)).to eq(expected)
-    end
-
     it 'has welcome message' do
       expected = "Welcome to MASTERMIND"
 
@@ -75,6 +67,13 @@ RSpec.describe Message do
       expect(@message.whats_your_guess).to include(expected)
     end
 
+    it 'has cheater message' do
+      expected = "Abe Linkedin"
+
+      expect(@message.cheater).to be_a(String)
+      expect(@message.cheater).to include(expected)
+    end
+
     it 'has too_long message' do
       expected = "That's too long!"
 
@@ -87,6 +86,21 @@ RSpec.describe Message do
 
       expect(@message.too_short).to be_a(String)
       expect(@message.too_short).to include(expected)
+    end
+
+    it 'has try_again message' do
+      expected = "Try again!"
+
+      expect(@message.try_again).to be_a(String)
+      expect(@message.try_again).to include(expected)
+    end
+
+    it 'outputs colored circles' do
+      guesses = ["r", "b", "y", "g"]
+      expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
+
+      expect(@message.colored_circles(guesses)).to be_a(String)
+      expect(@message.colored_circles(guesses)).to eq(expected)
     end
 
     it 'has progress_report message' do
