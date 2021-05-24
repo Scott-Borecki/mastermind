@@ -52,6 +52,10 @@ class Message
     "
   end
 
+  def quitter
+    "Goodbye, ya quitter!"
+  end
+
 
   def lets_play
     "
