@@ -98,15 +98,15 @@ class Message
     "
   end
 
-  def progress_report(guess, guess_count, num_correct_total, num_correct_position)
+  def progress_report(guesses, guess_count, num_correct_total, num_correct_position)
     "                       Guess#       #{guess_count}
-                       Guess:   #{colored_circles(guess)}
+                       Guess:   #{colored_circles(guesses)}
               Correct Colors:     * #{num_correct_total} *
            Correct Positions:    ** #{num_correct_position} **"
     # puts "\n" "#{colored_circles} has #{@num_correct_total} of the correct colors with #{@num_correct_position} in the correct positions." "\n"
   end
 
-  def congrats(guess, guess_count, elapsed_minutes, elapsed_seconds)
+  def congrats(guesses, guess_count, elapsed_minutes, elapsed_seconds)
     "
         \u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}
         \u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}
@@ -118,7 +118,7 @@ class Message
 
                            You guessed the sequence!
 
-                                    #{colored_circles(guess)}
+                                    #{colored_circles(guesses)}
 
                                   in #{guess_count} guesses
                            over #{elapsed_minutes} minutes, #{elapsed_seconds} seconds.
@@ -135,7 +135,7 @@ class Message
 "
   end
 
-  def colored_circles(guess_colors)
+  def colored_circles(guesses)
       color_hash = {
         "r" => "\u{1f534}",
         "y" => "\u{1f7e1}",
@@ -143,7 +143,7 @@ class Message
         "b" => "\u{1f535}",
       }
 
-      (guess_colors.split(//).map { |color| color_hash[color] }).join  # perhaps reference the guess_colors that is already split.  Check reference in Game class.
+      (guesses.map { |color| color_hash[color] }).join  # perhaps reference the guess_colors that is already split.  Check reference in Game class.
   end
 
 end

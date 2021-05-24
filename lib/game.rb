@@ -79,7 +79,7 @@ class Game
     if num_correct_position == 4
       you_win
     else
-      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position)
+      puts message.progress_report(guesses, @guess_count, num_correct_total, num_correct_position)
       game_flow
     end
   end
@@ -104,7 +104,7 @@ class Game
 
   def you_win
     timer.end
-    puts message.congrats(@guess, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
+    puts message.congrats(guesses, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
     start_input
   end
 

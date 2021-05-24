@@ -19,11 +19,11 @@ RSpec.describe Message do
   describe 'object methods' do
 
     it 'outputs colored circles' do
-      guess_colors = "rbyg"
+      guesses = ["r", "b", "y", "g"]
       expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
 
-      expect(@message.colored_circles(guess_colors)).to be_a(String)
-      expect(@message.colored_circles(guess_colors)).to eq(expected)
+      expect(@message.colored_circles(guesses)).to be_a(String)
+      expect(@message.colored_circles(guesses)).to eq(expected)
     end
 
     it 'has welcome message' do
@@ -95,11 +95,11 @@ RSpec.describe Message do
       expected_3 = "1"
       expected_4 = "40"
 
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to be_a(String)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_1)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_2)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_3)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_4)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
     end
 
     it 'has congrats message' do
@@ -108,11 +108,11 @@ RSpec.describe Message do
       expected_3 = "1"
       expected_4 = "40"
 
-      expect(@message.congrats('bbbb', 4, 1, 40)).to be_a(String)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_1)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_2)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_3)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_4)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
     end
   end
 end
