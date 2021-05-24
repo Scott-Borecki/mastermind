@@ -24,11 +24,6 @@ class Game
       end
     end
   end
-  #
-  # def try_again
-  #   puts message.you_got_this
-  #   start_input
-  # end
 
   def quit
     puts message.quitter
@@ -84,11 +79,10 @@ class Game
     end
   end
 
-  # split into multiple methods
   def num_correct_total(guess_colors = guesses, sequence_colors = sequence.secret_code)
     colors = ['r', 'g', 'b', 'y']
-    guess_nums_correct = colors.map { |color| guess_colors.count(color) } # make this one method with an argument
-    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) } # make this one method with an argument
+    guess_nums_correct = colors.map { |color| guess_colors.count(color) }
+    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
     zipper = guess_nums_correct.zip(sequence_nums_correct)
     num_correct_total = zipper.sum { |index| index.min }
   end

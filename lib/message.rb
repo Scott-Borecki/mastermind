@@ -122,7 +122,7 @@ class Message
         "b" => "\u{1f535}",
       }
 
-      (guesses.map { |color| color_hash[color] }).join  # perhaps reference the guess_colors that is already split.  Check reference in Game class.
+      (guesses.map { |color| color_hash[color] }).join
   end
 
   def progress_report(guesses, guess_count, num_correct_total, num_correct_position)
@@ -130,7 +130,6 @@ class Message
                        Guess:   #{colored_circles(guesses)}
               Correct Colors:     * #{num_correct_total} *
            Correct Positions:    ** #{num_correct_position} **"
-    # puts "\n" "#{colored_circles} has #{@num_correct_total} of the correct colors with #{@num_correct_position} in the correct positions." "\n"
   end
 
   def congrats(guesses, guess_count, elapsed_minutes, elapsed_seconds)
