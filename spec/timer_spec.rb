@@ -28,44 +28,32 @@ RSpec.describe Timer do
       expect(@timer.end).to be_an_instance_of(Time)
     end
 
-    it 'can convert time to minutes' do
+    it 'can output minutes elapsed' do
       @timer.instance_variable_set(:@start, Time.new(2021, 10, 31, 2, 0, 2, "-04:00"))
       @timer.instance_variable_set(:@end, Time.new(2021, 10, 31, 2, 2, 2, "-04:00"))
 
       expect(@timer.elapsed_minutes).to be_an_instance_of(Integer)
       expect(@timer.elapsed_minutes).to eq(2)
 
+      @timer.instance_variable_set(:@start, Time.new(2021, 10, 31, 1, 59, 2, "-04:00"))
+      @timer.instance_variable_set(:@end, Time.new(2021, 10, 31, 2, 2, 2, "-04:00"))
+
+      expect(@timer.elapsed_minutes).to be_an_instance_of(Integer)
+      expect(@timer.elapsed_minutes).to eq(3)
     end
 
+    it 'can output seconds elapsed' do
+      @timer.instance_variable_set(:@start, Time.new(2021, 10, 31, 2, 2, 2, "-04:00"))
+      @timer.instance_variable_set(:@end, Time.new(2021, 10, 31, 2, 2, 22, "-04:00"))
 
+      expect(@timer.elapsed_seconds).to be_an_instance_of(Integer)
+      expect(@timer.elapsed_seconds).to eq(20)
 
-    it 'can count how much time has elapsed' do
+      @timer.instance_variable_set(:@start, Time.new(2021, 10, 31, 2, 1, 52, "-04:00"))
+      @timer.instance_variable_set(:@end, Time.new(2021, 10, 31, 2, 2, 22, "-04:00"))
 
+      expect(@timer.elapsed_seconds).to be_an_instance_of(Integer)
+      expect(@timer.elapsed_seconds).to eq(30)
     end
-    # it "knows the difference between start and end" do
-    #   initial = Time.new(2020, 10, 31, 2, 2, 2, "-04:00").year
-    #   final = Time.new(2021, 10, 31, 2, 2, 2, "-04:00").year
-    #
-    #   expect(@timer.elapsed_time(initial, final)).to be_an_instance_of(Integer)
-    #   expect(@timer.elapsed_time(initial, final)).to eq(1)
-    #
-    # end
-
-
-    # it "can convert time to minutes" do
-    # #   initial = Time.new(2021, 10, 31, 2, 0, 2, "-04:00").min
-    #   final = Time.new(2021, 10, 31, 2, 2, 2, "-04:00").min
-    #
-    #   @timer.elapsed_time = 120
-    #   expect(@timer.elapsed_time_minutes).to eq(2)
-    #
-    # # end
-    #   @initial = Time.new(2020, 10, 31, 1, 1, 1, "-04:00")
-    #   @final = Time.new(2021, 10, 31, 2, 2, 2, "-04:00")
-    #   @timer.elapsed_time(@initial, @final)
-    #   expect(@timer.elapsed_time_minutes).to be_an_instance_of(Integer)
-    #   require "pry"; binding.pry
-    #   expect(@timer.elapsed_time_minutes).to eq(1)
-
   end
 end
