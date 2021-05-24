@@ -18,14 +18,6 @@ RSpec.describe Message do
 
   describe 'object methods' do
 
-    it 'outputs colored circles' do
-      guess_colors = "rbyg"
-      expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
-
-      expect(@message.colored_circles(guess_colors)).to be_a(String)
-      expect(@message.colored_circles(guess_colors)).to eq(expected)
-    end
-
     it 'has welcome message' do
       expected = "Welcome to MASTERMIND"
 
@@ -75,6 +67,13 @@ RSpec.describe Message do
       expect(@message.whats_your_guess).to include(expected)
     end
 
+    it 'has cheater message' do
+      expected = "Abe Linkedin"
+
+      expect(@message.cheater).to be_a(String)
+      expect(@message.cheater).to include(expected)
+    end
+
     it 'has too_long message' do
       expected = "That's too long!"
 
@@ -89,17 +88,32 @@ RSpec.describe Message do
       expect(@message.too_short).to include(expected)
     end
 
+    it 'has try_again message' do
+      expected = "Try again!"
+
+      expect(@message.try_again).to be_a(String)
+      expect(@message.try_again).to include(expected)
+    end
+
+    it 'outputs colored circles' do
+      guesses = ["r", "b", "y", "g"]
+      expected = "\u{1f534}""\u{1f535}""\u{1f7e1}""\u{1f7e2}"
+
+      expect(@message.colored_circles(guesses)).to be_a(String)
+      expect(@message.colored_circles(guesses)).to eq(expected)
+    end
+
     it 'has progress_report message' do
       expected_1 = "\u{1f535}\u{1f535}\u{1f535}\u{1f535}"
       expected_2 = "4"
       expected_3 = "1"
       expected_4 = "40"
 
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to be_a(String)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_1)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_2)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_3)
-      expect(@message.progress_report('bbbb', 4, 1, 40)).to include(expected_4)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
+      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
     end
 
     it 'has congrats message' do
@@ -108,11 +122,11 @@ RSpec.describe Message do
       expected_3 = "1"
       expected_4 = "40"
 
-      expect(@message.congrats('bbbb', 4, 1, 40)).to be_a(String)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_1)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_2)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_3)
-      expect(@message.congrats('bbbb', 4, 1, 40)).to include(expected_4)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
+      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
     end
   end
 end

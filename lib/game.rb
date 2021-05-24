@@ -25,11 +25,6 @@ class Game
     end
   end
 
-  def try_again
-    puts message.you_got_this
-    start_input
-  end
-
   def quit
     puts message.quitter
     exit!
@@ -63,32 +58,31 @@ class Game
       quit
     when @guess == "c", @guess == "cheat"
       puts sequence.cheat_code
-      # puts message.cheater ## add message for cheaters
+      puts message.cheater
     when @guess.length != 4
       @guess.length > 4 ? ( puts message.too_long ) : ( puts message.too_short )
     when @guess.delete("rbgy").empty?
       @guess_count += 1
       evaluate_guess
     else
-      puts message.you_got_this # consider new message to give user more feedback on invalid input
+      puts message.try_again
     end
   end
-# abstract, encapsulate
+
   def evaluate_guess
     num_correct_total
     if num_correct_position == 4
       you_win
     else
-      puts message.progress_report(@guess, @guess_count, num_correct_total, num_correct_position)
+      puts message.progress_report(guesses, @guess_count, num_correct_total, num_correct_position)
       game_flow
     end
   end
 
-  # split into multiple methods
   def num_correct_total(guess_colors = guesses, sequence_colors = sequence.secret_code)
-    colors = ['r', 'g', 'b', 'y'] # make this its own method?
-    guess_nums_correct = colors.map { |color| guess_colors.count(color) } # make this one method with an argument
-    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) } # make this one method with an argument
+    colors = ['r', 'g', 'b', 'y']
+    guess_nums_correct = colors.map { |color| guess_colors.count(color) }
+    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
     zipper = guess_nums_correct.zip(sequence_nums_correct)
     num_correct_total = zipper.sum { |index| index.min }
   end
@@ -104,7 +98,7 @@ class Game
 
   def you_win
     timer.end
-    puts message.congrats(@guess, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
+    puts message.congrats(guesses, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
     start_input
   end
 

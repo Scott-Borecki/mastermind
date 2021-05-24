@@ -22,8 +22,8 @@ RSpec.describe Game do
 
     it 'has readable attributes' do
       expect(@game.guess_count).to be_an_instance_of(Integer)
-      expect(@game.message).to be_an_instance_of(Message)
       expect(@game.guess).to be_an_instance_of(String)
+      expect(@game.message).to be_an_instance_of(Message)
       expect(@game.sequence).to be_an_instance_of(Sequence)
       expect(@game.timer).to be_an_instance_of(Timer)
 
