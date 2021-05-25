@@ -16,7 +16,7 @@
 
 ### Overview
 
-[Mastermind](https://github.com/Scott-Borecki/mastermind) is an 10-day, two-person project during Mod 1 of 4, for Turing School's Back End Engineering Program.
+[Mastermind](https://github.com/Scott-Borecki/mastermind) is a 10-day, two-person project during Mod 1 of 4, for Turing School's Back End Engineering Program.
 
 Our challenge was to build a playable game of Mastermind that runs in a REPL interface.
 
