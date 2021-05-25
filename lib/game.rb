@@ -12,11 +12,11 @@ class Game
   def start_input
     @input = gets.chomp.downcase
     case @input
-    when "p" || "play"
+    when "p", "play"
       play
-    when "i" || "instructions"
+    when "i", "instructions"
       instructions
-    when "q" || "quit"
+    when "q", "quit"
       quit
     else
       puts message.invalid_input
