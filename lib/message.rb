@@ -21,7 +21,7 @@ class Message
     "
   end
 
-  def you_got_this
+  def invalid_input
     "That seemed tough ... try again!
 
     "

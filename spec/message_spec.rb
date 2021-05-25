@@ -25,11 +25,11 @@ RSpec.describe Message do
       expect(@message.welcome).to include(expected)
     end
 
-    it 'has you_got_this message' do
+    it 'has invalid_input message' do
       expected = "That seemed tough ... try again!"
 
-      expect(@message.you_got_this).to be_a(String)
-      expect(@message.you_got_this).to include(expected)
+      expect(@message.invalid_input).to be_a(String)
+      expect(@message.invalid_input).to include(expected)
     end
 
     it 'has instructions message' do
