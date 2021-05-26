@@ -35,7 +35,7 @@ RSpec.describe Sequence do
       expect(secret_code_1).not_to eq(secret_code_2)
     end
 
-    it "has a cheat code" do
+    it "can return the cheat code" do
       secret_code = ['r', 'g', 'b', 'y']
       @sequence.secret_code << secret_code
       @sequence.secret_code.flatten

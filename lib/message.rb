@@ -125,14 +125,14 @@ class Message
       (guesses.map { |color| color_hash[color] }).join
   end
 
-  def progress_report(guesses, guess_count, num_correct_total, num_correct_position)
-    "                       Guess#       #{guess_count}
-                       Guess:   #{colored_circles(guesses)}
-              Correct Colors:     * #{num_correct_total} *
-           Correct Positions:    ** #{num_correct_position} **"
+  def progress_report(guess_data)
+    "                       Guess#       #{guess_data[:guess_count]}
+                       Guess:   #{colored_circles(guess_data[:guesses])}
+              Correct Colors:     * #{guess_data[:num_correct_total]} *
+           Correct Positions:    ** #{guess_data[:num_correct_position]} **"
   end
 
-  def congrats(guesses, guess_count, elapsed_minutes, elapsed_seconds)
+  def congrats(guess_data)
     "
         \u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}
         \u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}
@@ -144,10 +144,10 @@ class Message
 
                            You guessed the sequence!
 
-                                    #{colored_circles(guesses)}
+                                    #{colored_circles(guess_data[:guesses])}
 
-                                  in #{guess_count} guesses
-                           over #{elapsed_minutes} minutes, #{elapsed_seconds} seconds.
+                                  in #{guess_data[:guess_count]} guesses
+                           over #{guess_data[:elapsed_minutes]} minutes, #{guess_data[:elapsed_seconds]} seconds.
 
 
         \u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}

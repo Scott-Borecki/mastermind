@@ -9,14 +9,14 @@ RSpec.describe Message do
     @message = Message.new
   end
 
-  describe 'object creation' do
+  describe 'Object Creation' do
 
     it 'exists' do
       expect(@message).to be_a(Message)
     end
   end
 
-  describe 'object methods' do
+  describe 'Object Methods' do
 
     it 'has welcome message' do
       expected = "Welcome to MASTERMIND"
@@ -104,29 +104,43 @@ RSpec.describe Message do
     end
 
     it 'has progress_report message' do
+      guess_data = {
+        guesses: ["b", "b", "b", "b"],
+        guess_count: 4,
+        num_correct_total: 2,
+        num_correct_position: 1,
+        }
+
       expected_1 = "\u{1f535}\u{1f535}\u{1f535}\u{1f535}"
       expected_2 = "4"
-      expected_3 = "1"
-      expected_4 = "40"
+      expected_3 = "2"
+      expected_4 = "1"
 
-      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
-      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
-      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
-      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
-      expect(@message.progress_report(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
+      expect(@message.progress_report(guess_data)).to be_a(String)
+      expect(@message.progress_report(guess_data)).to include(expected_1)
+      expect(@message.progress_report(guess_data)).to include(expected_2)
+      expect(@message.progress_report(guess_data)).to include(expected_3)
+      expect(@message.progress_report(guess_data)).to include(expected_4)
     end
 
     it 'has congrats message' do
+      guess_data = {
+        guesses: ["b", "b", "b", "b"],
+        guess_count: 4,
+        elapsed_minutes: 2,
+        elapsed_seconds: 1,
+        }
+
       expected_1 = "\u{1f535}\u{1f535}\u{1f535}\u{1f535}"
       expected_2 = "4"
-      expected_3 = "1"
-      expected_4 = "40"
+      expected_3 = "2"
+      expected_4 = "1"
 
-      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to be_a(String)
-      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_1)
-      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_2)
-      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_3)
-      expect(@message.congrats(["b", "b", "b", "b"], 4, 1, 40)).to include(expected_4)
+      expect(@message.congrats(guess_data)).to be_a(String)
+      expect(@message.congrats(guess_data)).to include(expected_1)
+      expect(@message.congrats(guess_data)).to include(expected_2)
+      expect(@message.congrats(guess_data)).to include(expected_3)
+      expect(@message.congrats(guess_data)).to include(expected_4)
     end
   end
 end
