@@ -10,24 +10,29 @@ class Game
   end
 
   def start_input
-    loop do
-      @input = gets.chomp.downcase
-      case @input
-      when "p" || "play"
-        play
-      when "i" || "instructions"
-        instructions
-      when "q" || "quit"
-        quit
-      else
-        puts message.you_got_this
-      end
+    @input = gets.chomp.downcase
+    case @input
+    when "p", "play"
+      play
+    when "i", "instructions"
+      instructions
+    when "q", "quit"
+      quit
+    else
+      puts message.invalid_input
+      self.start_input
     end
   end
 
   def quit
     puts message.quitter
     exit!
+  end
+
+  def instructions
+    puts message.instructions
+    puts message.lets_play
+    start_input
   end
 
   def play
@@ -38,14 +43,8 @@ class Game
     game_flow
   end
 
-  def instructions
-    puts message.instructions
-    puts message.lets_play
-    start_input
-  end
-
   def game_flow
-    loop do
+    until num_correct_position == 4 do
       puts message.whats_your_guess
       @guess = gets.chomp.downcase
       submit_guess
@@ -57,25 +56,36 @@ class Game
     when @guess == "q", @guess == "quit"
       quit
     when @guess == "c", @guess == "cheat"
-      puts sequence.cheat_code
-      puts message.cheater
+      cheat
     when @guess.length != 4
-      @guess.length > 4 ? ( puts message.too_long ) : ( puts message.too_short )
+      wrong_length
     when @guess.delete("rbgy").empty?
-      @guess_count += 1
       evaluate_guess
     else
       puts message.try_again
     end
   end
 
+  def cheat
+    puts sequence.cheat_code
+    puts message.cheater
+  end
+
+  def wrong_length
+    if @guess.length > 4
+      puts message.too_long
+    else
+      puts message.too_short
+    end
+  end
+
   def evaluate_guess
     num_correct_total
+    @guess_count += 1
     if num_correct_position == 4
       you_win
     else
       puts message.progress_report(guesses, @guess_count, num_correct_total, num_correct_position)
-      game_flow
     end
   end
 
@@ -83,13 +93,13 @@ class Game
     colors = ['r', 'g', 'b', 'y']
     guess_nums_correct = colors.map { |color| guess_colors.count(color) }
     sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
-    zipper = guess_nums_correct.zip(sequence_nums_correct)
-    num_correct_total = zipper.sum { |index| index.min }
+    compare_colors = guess_nums_correct.zip(sequence_nums_correct)
+    num_correct_total = compare_colors.sum { |index| index.min }
   end
 
   def num_correct_position(guess_colors = guesses, sequence_colors = sequence.secret_code)
-    zipped_code = sequence_colors.zip(guess_colors)
-    num_correct_position = zipped_code.count { |index| index[0] == index[1] }
+    compare_positions = sequence_colors.zip(guess_colors)
+    num_correct_position = compare_positions.count { |index| index[0] == index[1] }
   end
 
   def guesses

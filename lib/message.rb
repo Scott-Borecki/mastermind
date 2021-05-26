@@ -21,7 +21,7 @@ class Message
     "
   end
 
-  def you_got_this
+  def invalid_input
     "That seemed tough ... try again!
 
     "
@@ -156,8 +156,8 @@ class Message
         \u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}
         \u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}\u{1f389}\u{1f38a}
 
-    Do you want to (p)lay again or (q)uit
-
+        Would you like to (p)lay, read the (i)nstructions, or (q)uit?
+                           ^                ^                  ^
 "
   end
 end

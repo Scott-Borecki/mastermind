@@ -13,10 +13,11 @@
 - [Contributing](#contributing)
 
 # README
+------
 
-### Overview
+### <ins>Overview</ins>
 
-[Mastermind](https://github.com/Scott-Borecki/mastermind) is an 10-day, two-person project during Mod 1 of 4, for Turing School's Back End Engineering Program.
+[Mastermind](https://github.com/Scott-Borecki/mastermind) is a 10-day, two-person project during Mod 1 of 4, for Turing School's Back End Engineering Program.
 
 Our challenge was to build a playable game of Mastermind that runs in a REPL interface.
 
@@ -28,22 +29,22 @@ Learning goals and areas of focus consisted of:
 - Apply Enumerable techniques in a real context
 - [Technical Requirements](https://backend.turing.edu/module1/projects/mastermind)
 
-### Getting Started:
+### <ins>Getting Started</ins>
 
 **Fork this repository:** [Mastermind](https://backend.turing.edu/module1/projects/mastermind)
 
-**Clone your forked repository:** `git clone` and the copied URL
+**Clone your forked repository:** Run `git clone` with the copied URL.
 
-**Getting Started:** In your terminal, navigate into the `mastermind` directory and run the following command to play the game: `ruby mastermind.rb`
+**Getting Started:** In your terminal, navigate into the `mastermind` directory and run the following command to play the game: `ruby mastermind.rb`.
 
-### Tools Utilized:
+### <ins>Tools Used</ins>
 - Ruby 2.7.2
 - RSpec for testing
 - Pry for debugging
 - Atom
 - GitHub
 
-### Contributing
+### <ins>Contributors</ins>
 
 👤  **Scott Borecki**
 - Github: [Scott-Borecki](https://github.com/Scott-Borecki)
