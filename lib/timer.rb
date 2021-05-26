@@ -1,8 +1,8 @@
 class Timer
 
   def initialize
-    @start = ""
-    @end = ""
+    @start = Time.new
+    @end = Time.new
   end
 
   def start

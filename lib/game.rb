@@ -85,20 +85,20 @@ class Game
     if num_correct_position == 4
       you_win
     else
-      puts message.progress_report(guesses, @guess_count, num_correct_total, num_correct_position)
+      puts message.progress_report(guess_data)
     end
   end
 
-  def num_correct_total(guess_colors = guesses, sequence_colors = sequence.secret_code)
+  def num_correct_total
     colors = ['r', 'g', 'b', 'y']
-    guess_nums_correct = colors.map { |color| guess_colors.count(color) }
-    sequence_nums_correct = colors.map { |color| sequence_colors.count(color) }
+    guess_nums_correct = colors.map { |color| guesses.count(color) }
+    sequence_nums_correct = colors.map { |color| sequence.secret_code.count(color) }
     compare_colors = guess_nums_correct.zip(sequence_nums_correct)
     num_correct_total = compare_colors.sum { |index| index.min }
   end
 
-  def num_correct_position(guess_colors = guesses, sequence_colors = sequence.secret_code)
-    compare_positions = sequence_colors.zip(guess_colors)
+  def num_correct_position
+    compare_positions = sequence.secret_code.zip(guesses)
     num_correct_position = compare_positions.count { |index| index[0] == index[1] }
   end
 
@@ -108,8 +108,18 @@ class Game
 
   def you_win
     timer.end
-    puts message.congrats(guesses, @guess_count, timer.elapsed_minutes, timer.elapsed_seconds)
+    puts message.congrats(guess_data)
     start_input
+  end
+
+  def guess_data
+    { guesses: guesses,
+      guess_count: @guess_count,
+      num_correct_total: num_correct_total,
+      num_correct_position: num_correct_position,
+      elapsed_minutes: timer.elapsed_minutes,
+      elapsed_seconds: timer.elapsed_seconds,
+    }
   end
 
 end

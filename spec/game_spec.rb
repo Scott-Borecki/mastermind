@@ -7,7 +7,7 @@ require './lib/timer'
 
 RSpec.describe Game do
 
-  describe 'Object creation' do
+  describe 'Object Creation' do
 
     before(:each) do
       timer = Timer.new
@@ -37,69 +37,46 @@ RSpec.describe Game do
     before(:each) do
       timer = Timer.new
       message = Message.new
-      sequence = Sequence.new
-      @game = Game.new(message, sequence, timer)
+      @sequence = Sequence.new
+      @game = Game.new(message, @sequence, timer)
     end
 
-    describe '#num_correct_total' do
+    it 'can count the correct colors and positions' do
+      # test case with multiple colors (b) in guess
+      allow(@game).to receive(:guesses).and_return(['b', 'b', 'b', 'b'])
+      allow(@sequence).to receive(:secret_code).and_return(['r', 'y', 'y', 'g'])
 
-      it 'can count the correct colors' do
-        guess_colors = ['b', 'b', 'b', 'b']
-        sequence_colors = ['r', 'y', 'y', 'g']
+      expect(@game.num_correct_total).to eq(0)
+      expect(@game.num_correct_position).to eq(0)
 
-        expect(@game.num_correct_total(guess_colors, sequence_colors)).to eq(0)
+      # test case with multiple same colors (g) in guess and multiple same colors (y) in sequence
+      allow(@game).to receive(:guesses).and_return(['b', 'g', 'y', 'g'])
+      allow(@sequence).to receive(:secret_code).and_return(['r', 'y', 'y', 'g'])
 
-        guess_colors = ['b', 'g', 'y', 'g']
-        sequence_colors = ['r', 'y', 'y', 'g']
+      expect(@game.num_correct_total).to eq(2)
+      expect(@game.num_correct_position).to eq(2)
 
-        expect(@game.num_correct_total(guess_colors, sequence_colors)).to eq(2)
+      # test case with all colors correct but wrong positions
+      allow(@game).to receive(:guesses).and_return(['y', 'b', 'r', 'g'])
+      allow(@sequence).to receive(:secret_code).and_return(['g', 'y', 'b', 'r'])
 
-        guess_colors = ['y', 'b', 'r', 'g']
-        sequence_colors = ['g', 'y', 'b', 'r']
+      expect(@game.num_correct_total).to eq(4)
+      expect(@game.num_correct_position).to eq(0)
 
-        expect(@game.num_correct_total(guess_colors, sequence_colors)).to eq(4)
+      # test case with all colors and positions correct
+      allow(@game).to receive(:guesses).and_return(['g', 'y', 'b', 'r'])
+      allow(@sequence).to receive(:secret_code).and_return(['g', 'y', 'b', 'r'])
 
-        guess_colors = ['g', 'y', 'b', 'r']
-        sequence_colors = ['g', 'y', 'b', 'r']
-
-        expect(@game.num_correct_total(guess_colors, sequence_colors)).to eq(4)
-      end
+      expect(@game.num_correct_total).to eq(4)
+      expect(@game.num_correct_position).to eq(4)
     end
 
-    describe '#num_correct_position' do
+    it 'can split guess string into an array' do
+      @game.instance_variable_set(:@guess, "bbbb")
 
-      it 'can count the correct positions' do
-        guess_colors = ['b', 'b', 'b', 'b']
-        sequence_colors = ['r', 'y', 'y', 'g']
-
-        expect(@game.num_correct_position(guess_colors, sequence_colors)).to eq(0)
-
-        guess_colors = ['b', 'g', 'y', 'g']
-        sequence_colors = ['r', 'y', 'y', 'g']
-
-        expect(@game.num_correct_position(guess_colors, sequence_colors)).to eq(2)
-
-        guess_colors = ['y', 'b', 'r', 'g']
-        sequence_colors = ['g', 'y', 'b', 'r']
-
-        expect(@game.num_correct_position(guess_colors, sequence_colors)).to eq(0)
-
-        guess_colors = ['g', 'y', 'b', 'r']
-        sequence_colors = ['g', 'y', 'b', 'r']
-
-        expect(@game.num_correct_position(guess_colors, sequence_colors)).to eq(4)
-      end
-    end
-
-    describe '#guesses' do
-
-      it 'can split guess string into an array' do
-        @game.instance_variable_set(:@guess, "bbbb")
-
-        expected = ["b", "b", "b", "b"]
-        expect(@game.guesses).to be_an_instance_of(Array)
-        expect(@game.guesses).to eq(expected)
-      end
+      expected = ["b", "b", "b", "b"]
+      expect(@game.guesses).to be_an_instance_of(Array)
+      expect(@game.guesses).to eq(expected)
     end
 
     it 'can play when asked to' do
