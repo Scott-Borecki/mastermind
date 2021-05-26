@@ -5,12 +5,14 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
+![Mastermind Welcome Screen](https://user-images.githubusercontent.com/79381792/119738611-30beea00-be3e-11eb-91aa-250dfe4e6aba.png)
+
 ## Table of Contents
 
 - [Overview](#overview)
 - [Getting Started](#getting-started)
-- [Tools Utilized](#tools-utilized)
-- [Contributing](#contributing)
+- [Tools Utilized](#tools-used)
+- [Contributing](#contributors)
 
 # README
 ------
