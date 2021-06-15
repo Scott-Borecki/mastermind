@@ -11,8 +11,8 @@
 
 - [Overview](#overview)
 - [Getting Started](#getting-started)
-- [Tools Utilized](#tools-used)
-- [Contributing](#contributors)
+- [Tools Used](#tools-used)
+- [Contributors](#contributors)
 
 # README
 ------
